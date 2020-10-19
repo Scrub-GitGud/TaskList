@@ -61,11 +61,14 @@ function DeleteItem(e) {
     e.preventDefault()
 
     if(e.target.parentElement.classList.contains("delete-item")){
-        if(confirm(`Are you sure you want to delete "${e.target.parentElement.parentElement.innerText}"`)) {
-            RemoveFromInLocalStorage(e.target.parentElement.parentElement.firstChild.textContent)
-            e.target.parentElement.parentElement.remove()
-            console.log("Deleted "  + e.target.parentElement.parentElement.innerText);
-        }
+        // if(confirm(`Are you sure you want to delete "${e.target.parentElement.parentElement.innerText}"`)) {
+        //     RemoveFromInLocalStorage(e.target.parentElement.parentElement.firstChild.textContent)
+        //     e.target.parentElement.parentElement.remove()
+        //     console.log("Deleted "  + e.target.parentElement.parentElement.innerText);
+        // }
+        RemoveFromInLocalStorage(e.target.parentElement.parentElement.firstChild.textContent)
+        e.target.parentElement.parentElement.remove()
+        console.log("Deleted "  + e.target.parentElement.parentElement.innerText);
     }
 }
 
@@ -103,10 +106,10 @@ function Filter(e) {
 function GetAllTaskFromLocalStorage() {
     let tasks
 
-    if(localStorage.getItem('task_list') == null) {
+    if(localStorage.getItem('xtasklist') == null) {
         tasks = []
     } else {
-        tasks = JSON.parse(localStorage.getItem('task_list'))
+        tasks = JSON.parse(localStorage.getItem('xtasklist'))
     }
 
     tasks.forEach((i) => {
@@ -126,27 +129,27 @@ function GetAllTaskFromLocalStorage() {
 function StoreInLocalStorage(newTask) {
     let tasks
 
-    if(localStorage.getItem('task_list') == null) {
+    if(localStorage.getItem('xtasklist') == null) {
         tasks = []
     } else {
-        tasks = JSON.parse(localStorage.getItem('task_list'))
+        tasks = JSON.parse(localStorage.getItem('xtasklist'))
     }
 
     tasks.push(newTask)
-    localStorage.setItem("task_list", JSON.stringify(tasks))
+    localStorage.setItem("xtasklist", JSON.stringify(tasks))
 }
 function RemoveFromInLocalStorage(deleteTask) {
     let tasks
 
-    if(localStorage.getItem('task_list') == null) {
+    if(localStorage.getItem('xtasklist') == null) {
         tasks = []
     } else {
-        tasks = JSON.parse(localStorage.getItem('task_list'))
+        tasks = JSON.parse(localStorage.getItem('xtasklist'))
     }
 
     tasks = tasks.filter(i => i !== deleteTask)
 
-    localStorage.setItem("task_list", JSON.stringify(tasks))
+    localStorage.setItem("xtasklist", JSON.stringify(tasks))
 }
 function ClearAllTasks() {
     localStorage.clear()
